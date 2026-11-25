@@ -1,0 +1,17 @@
+[remap]
+
+importer="font_data_bmfont"
+type="FontFile"
+uid="uid://8mkxq21m53yr"
+path="res://.godot/imported/upheaval.fnt-4a16a636ca5d7b0aef71bdf4826b9b46.fontdata"
+
+[deps]
+
+source_file="res://assets/upheaval.fnt"
+dest_files=["res://.godot/imported/upheaval.fnt-4a16a636ca5d7b0aef71bdf4826b9b46.fontdata"]
+
+[params]
+
+fallbacks=[]
+compress=true
+scaling_mode=2

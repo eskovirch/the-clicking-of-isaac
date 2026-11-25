@@ -1,0 +1,7 @@
+# Godot 4+ specific ignores
+.godot/
+/android/
+
+# Exported binaries (distributed via GitHub Releases)
+*.exe
+*.pck

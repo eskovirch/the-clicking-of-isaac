@@ -1,0 +1,173 @@
+[gd_scene format=3 uid="uid://d3gy8oqeelgva"]
+
+[ext_resource type="Theme" uid="uid://b4pygk13rfac4" path="res://assets/bongo_theme.tres" id="1_kkyhv"]
+[ext_resource type="Script" uid="uid://3y6qwwajdcot" path="res://scripts/main.gd" id="2_14e2d"]
+[ext_resource type="Texture2D" uid="uid://bqcxkfwtw05pd" path="res://assets/character_001_isaac.png" id="3_6dj4h"]
+[ext_resource type="AudioStream" uid="uid://bggtgds5qlpcc" path="res://assets/thumbs_up.wav" id="4_0kjbx"]
+[ext_resource type="Script" uid="uid://da3fqfqv6gtgm" path="res://addons/godot_ai/runtime/draw_recipe.gd" id="5_74b2h"]
+
+[sub_resource type="Animation" id="Animation_jbj1t"]
+length = 1.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("IsaacSprite:region_rect")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(0, 192, 64, 64)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("IsaacSprite:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.8, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.02, 0.98), Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("IsaacSprite:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_tefeu"]
+length = 0.42
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("IsaacSprite:region_rect")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.045, 0.3, 0.35),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Rect2(64, 128, 64, 64), Rect2(128, 128, 64, 64), Rect2(64, 128, 64, 64), Rect2(0, 192, 64, 64)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("IsaacSprite:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.045, 0.11, 0.16, 0.3, 0.35, 0.42),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1.1, 0.9), Vector2(0.92, 1.1), Vector2(1.02, 0.98), Vector2(1, 1), Vector2(0.95, 1.05), Vector2(1.07, 0.93), Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("IsaacSprite:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.045, 0.12, 0.35, 0.42),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0.6), Vector2(0, -2), Vector2(0, 0), Vector2(0, 0.6), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dp3eg"]
+_data = {
+&"idle": SubResource("Animation_jbj1t"),
+&"thumbs_up": SubResource("Animation_tefeu")
+}
+
+[node name="Main" type="Control" unique_id=1285978563]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource("1_kkyhv")
+script = ExtResource("2_14e2d")
+
+[node name="IsaacPivot" type="Node2D" parent="." unique_id=1674081048]
+position = Vector2(105, 196)
+scale = Vector2(5, 5)
+
+[node name="IsaacSprite" type="Sprite2D" parent="IsaacPivot" unique_id=198627268]
+texture_filter = 1
+texture = ExtResource("3_6dj4h")
+centered = false
+offset = Vector2(-32, -56)
+region_enabled = true
+region_rect = Rect2(0, 192, 64, 64)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="IsaacPivot" unique_id=523950832]
+libraries/ = SubResource("AnimationLibrary_dp3eg")
+autoplay = &"idle"
+
+[node name="OptionsMenu" type="PopupMenu" parent="." unique_id=390493958]
+
+[node name="LikeSfx" type="AudioStreamPlayer" parent="." unique_id=685877592]
+stream = ExtResource("4_0kjbx")
+volume_db = -10.0
+
+[node name="BottomBar" type="HBoxContainer" parent="." unique_id=405308827]
+layout_mode = 0
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -66.0
+offset_top = -34.0
+offset_right = 66.0
+offset_bottom = -8.0
+
+[node name="CounterPanel" type="PanelContainer" parent="BottomBar" unique_id=1370795729]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+
+[node name="CounterLabel" type="Label" parent="BottomBar/CounterPanel" unique_id=1284931133]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.36078432, 0.30588236, 0.27450982, 1)
+text = "0"
+vertical_alignment = 1
+
+[node name="MenuButton" type="Button" parent="BottomBar" unique_id=1049039257]
+custom_minimum_size = Vector2(26, 26)
+layout_mode = 2
+tooltip_text = "Меню"
+focus_mode = 0
+
+[node name="HamburgerIcon" type="Control" parent="BottomBar/MenuButton" unique_id=1064078578]
+anchors_preset = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+script = ExtResource("5_74b2h")
+metadata/_ops = [{
+"color": Color(0.36078432, 0.30588236, 0.27450982, 1),
+"draw": "rect",
+"filled": true,
+"rect": Rect2(6, 7, 14, 2.3)
+}, {
+"color": Color(0.36078432, 0.30588236, 0.27450982, 1),
+"draw": "rect",
+"filled": true,
+"rect": Rect2(6, 11.85, 14, 2.3)
+}, {
+"color": Color(0.36078432, 0.30588236, 0.27450982, 1),
+"draw": "rect",
+"filled": true,
+"rect": Rect2(6, 16.7, 14, 2.3)
+}]
